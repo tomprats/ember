@@ -1,0 +1,47 @@
+@import "variables";
+
+body.matches-index {
+  .matches {
+    padding-top: 38px;
+  }
+  .match {
+    display: block;
+    padding: 5px;
+    border-bottom: 1px solid $gray;
+    height: 38px;
+    line-height: 28px;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    color: $gray;
+    img {
+      float: left;
+      height: 100%;
+    }
+    span {
+      position: absolute;
+      left: 0;
+      right: 0;
+    }
+  }
+}
+
+body.matching .user-data,
+body.matches-show {
+  color: black;
+  h2 {
+    margin: 0;
+    padding: 10px 0  5px;
+  }
+  .picture {
+    padding-top: 38px;
+    width: 100%;
+    img { width: 100%; }
+  }
+  .section {
+    padding: 0 10px;
+    overflow-x: auto;
+    img { width: 10%; }
+  }
+  .phone { padding-bottom: 5px; }
+}

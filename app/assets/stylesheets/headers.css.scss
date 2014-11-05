@@ -1,0 +1,42 @@
+@import "variables";
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  color: white;
+  background-color: $gray;
+  text-align: center;
+}
+.left-header, .right-header {
+  position: absolute;
+  top: 0;
+  height: 38px;
+  .fa, img {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    padding: 5px;
+    font-size: 25px;
+    height: 100%;
+  }
+}
+.left-header { left: 0; }
+.right-header { right: 0; }
+
+.notifications {
+  &.active {
+    .default { display: none; }
+    .highlight { display: initial; }
+  }
+  .highlight { display: none; }
+  img {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    height: 38px;
+    padding: 5px;
+  }
+}

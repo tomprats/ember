@@ -1,0 +1,14 @@
+@import "variables";
+
+body.sessions-new {
+  .login {
+    text-align: center;
+    > img {
+      display: block;
+      width: 100%;
+      max-width: 200px;
+      padding: 20px;
+      margin: 0 auto;
+    }
+  }
+}
