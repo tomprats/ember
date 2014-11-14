@@ -12,6 +12,7 @@ gem "jquery-turbolinks"
 gem "font-awesome-rails"
 
 gem "omniauth-facebook"
+gem "traitify"
 
 group :development do
   gem "pry"
