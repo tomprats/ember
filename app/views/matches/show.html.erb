@@ -2,6 +2,12 @@
   <%= fa_icon "arrow-left" %>
 <% end %>
 
+<div class="right-header">
+  <% @user.results.each do |result| %>
+    <%= link_to image_tag(result.badge), personality_path(result.id) %>
+  <% end %>
+</div>
+
 <div class="header">
   <%= @user.name %>
 </div>

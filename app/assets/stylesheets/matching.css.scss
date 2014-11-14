@@ -1,6 +1,13 @@
 @import "variables";
 $radius: 20px;
 
+.completed-assessment {
+  text-align: center;
+  padding: 10px 0;
+  background-color: $green;
+  position: relative;
+}
+
 .slides {
   overflow-x: hidden;
   position: relative;
@@ -34,6 +41,18 @@ $radius: 20px;
 
   .slide-image {
     img { width: 100%; }
+  }
+
+  .slide-badges {
+    position: absolute;
+    top: 0;
+    right: 0;
+    .slide-badge {
+      display: inline-block;
+      height: 38px;
+      padding: 5px 5px 5px 0;
+      img { height: 100%; }
+    }
   }
 
   .me-not {

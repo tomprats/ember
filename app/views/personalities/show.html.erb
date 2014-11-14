@@ -1,0 +1,21 @@
+<% if current_user && @user.uid %>
+  <%= link_to fa_icon("arrow-left"), match_path(@user.uid), class: "left-header colored" %>
+<% else %>
+  <%= link_to image_tag("logo.png"), root_path, class: "left-header" %>
+<% end %>
+
+<div class="right-header">
+  <% @user.results.each do |result| %>
+    <%= link_to image_tag(result.badge), personality_path(result.id) %>
+  <% end %>
+</div>
+
+<div class="header">
+  <%= @user.name || "Missing" %>
+</div>
+
+<div class="personality"
+  data-key="<%= ENV["TRAITIFY_KEY"] %>"
+  data-host="<%= ENV["TRAITIFY_HOST"] %>"
+  data-id="<%= @assessment_id %>">
+</div>

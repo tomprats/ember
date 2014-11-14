@@ -18,6 +18,13 @@ body.matches-index {
       float: left;
       height: 100%;
     }
+    .badges {
+      float: right;
+      height: 100%;
+      img {
+        float: none;
+      }
+    }
     span {
       position: absolute;
       left: 0;
