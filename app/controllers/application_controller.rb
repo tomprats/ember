@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def traitify
+    @traitify ||= Traitify.new
+  end
+  helper_method :traitify
+
   def authenticate_user!
     redirect_to root_path unless current_user
   end

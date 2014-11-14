@@ -9,7 +9,7 @@ $(document).ready(function() {
       $.ajax({
         url: "/matching/" + $slide.data("id"),
         type: "put",
-        data: { response: $this.hasClass("me") },
+        data: { response: $this.hasClass("me"), assessment_id: $slide.data("assessment-id"), type: $slide.hasClass("user") ? "user" : "slide" },
         success: function(data) {
           if(data.notification) {
             $(".notifications").addClass("active");
@@ -46,8 +46,14 @@ function updateSlides(slide) {
     $(data.slides).each(function() {
       var $newSlide = slide.clone();
       $newSlide.attr("class", "slide " + this.type);
+      $newSlide.data({id: this.id, "assessment-id": this.assessment_id});
       $newSlide.find(".slide-caption").text(this.caption);
       $newSlide.find(".slide-image img").attr("src", this.image_desktop);
+      $newSlide.find(".slide-badges").html("");
+      $(this.badges).each(function() {
+        var $badge = $("<div class='slide-badge'><img src='" + this.toString() + "'></div>");
+        $newSlide.find(".slide-badges").append($badge);
+      });
       $(".slides").append($newSlide);
     });
     // Move loading slide to back

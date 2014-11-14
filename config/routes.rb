@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :matches, only: [:index, :show]
   resources :matching, only: [:index, :show, :update]
   get :refresh, to: "matching#refresh"
+  get "p/:id", to: "personalities#show", as: :personality
 end

@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
     "https://graph.facebook.com/v2.1/#{uid}/picture?height=#{height}&width=#{width}"
   end
 
+  def results
+    completed_assessments.collect{ |a| OpenStruct.new(badge: a.badge, id: a.uid) }
+  end
+
   def age
     now = DateTime.now
     bd = DateTime.strptime(birthday, "%m/%d/%Y")
@@ -57,8 +61,37 @@ class User < ActiveRecord::Base
       "id" => uid,
       "caption" => name,
       "image_desktop" => picture,
-      "type" => :user
+      "type" => :user,
+      "results" => results
     }
+  end
+
+  ###################### Assessments ######################
+  def incomplete_assessment
+    incomplete_assessments(1).first
+  end
+
+  def incomplete_assessments(total = nil)
+    assessments = Assessment.where(user_uid: uid)
+    completed = assessments.where(completed: true)
+    incomplete = assessments.where(completed: false)
+    not_enough = incomplete.empty? || (total && incomplete.count < total)
+    if not_enough
+      completed_decks = completed.collect(&:deck_uid)
+      decks = Traitify.new.decks
+      decks.reject! { |deck| completed_decks.include?(deck.id) }
+      unless decks.empty?
+        deck = decks.first
+        assessment = Traitify.new.create_assessment(deck_id: deck.id)
+        assessment = Assessment.create(uid: assessment.id, user_uid: uid, deck_uid: deck.id, deck_name: deck.name)
+        incomplete.push(assessment)
+      end
+    end
+    total ? incomplete.to_a.first(total) : incomplete
+  end
+
+  def completed_assessments
+    Assessment.where(user_uid: uid, completed: true)
   end
 
   ###################### Class Methods ######################

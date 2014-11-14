@@ -14,6 +14,11 @@
   <%= link_to match_path(current_user.uid), class: "match", style: "background-color: rgba(203, 78, 7, 0.1)" do %>
     <%= image_tag current_user.picture %>
     <span><%= current_user.name %></span>
+    <div class="badges">
+      <% current_user.results.each do |result| %>
+        <%= image_tag(result.badge) %>
+      <% end %>
+    </div>
     <div class="clear"></div>
   <% end %>
   <% @matches.each do |notification| %>
@@ -22,6 +27,11 @@
     <%= link_to match_path(user.uid), class: "match", style: "background-color: #{color}" do %>
       <%= image_tag user.picture %>
       <span><%= user.name %></span>
+      <div class="badges">
+        <% user.results.each do |result| %>
+          <%= image_tag(result.badge) %>
+        <% end %>
+      </div>
       <div class="clear"></div>
     <% end %>
   <% end %>
