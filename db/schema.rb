@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018003314) do
+ActiveRecord::Schema.define(version: 20141024193939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assessments", force: true do |t|
+    t.string   "uid"
+    t.string   "user_uid"
+    t.string   "deck_uid"
+    t.string   "deck_name"
+    t.string   "personality_type"
+    t.string   "badge"
+    t.boolean  "completed",        default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "likes", force: true do |t|
     t.string   "page_uid"
