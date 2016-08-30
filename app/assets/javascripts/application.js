@@ -15,11 +15,3 @@
 //= require jquery_ujs
 //= require_tree .
 //= require turbolinks
-
-$(document).ready(function() {
-  $(document).on("click", ".close", function(e) {
-    e.preventDefault();
-    $(this).parent().remove();
-    return false;
-  });
-});
