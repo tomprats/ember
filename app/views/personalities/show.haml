@@ -1,0 +1,12 @@
+- if current_user && @user.uid
+  = link_to fa_icon("arrow-left"), match_path(@user.uid), class: "left-header colored"
+- else
+  = link_to image_tag("logo.png"), root_path, class: "left-header"
+
+.right-header
+  - @user.results.each do |result|
+    = link_to image_tag(result.badge), personality_path(result.id)
+
+.header= @user.name || "Missing"
+
+.personality{data: { key: ENV["TRAITIFY_KEY"], host: ENV["TRAITIFY_HOST"], id: @assessment_id}}

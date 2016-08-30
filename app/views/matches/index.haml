@@ -1,0 +1,26 @@
+= link_to matching_index_path, class: "left-header colored" do
+  = fa_icon "arrow-left"
+
+= link_to logout_path, class: "right-header colored" do
+  = fa_icon "power-off"
+
+.header Notifications
+
+.matches
+  = link_to match_path(current_user.uid), class: "match", style: "background-color: rgba(203, 78, 7, 0.1)" do
+    = image_tag current_user.picture
+    %span= current_user.name
+    .badges
+      - current_user.results.each do |result|
+        = image_tag result.badge
+    .clear
+  - @matches.each do |notification|
+    - user = notification.match
+    - color = notification.read ? "rgba(5, 143, 196, 0.1)" : "rgba(203, 78, 7, 0.1)"
+    = link_to match_path(user.uid), class: "match", style: "background-color: #{color}" do
+      = image_tag user.picture
+      %span= user.name
+      .badges
+        - user.results.each do |result|
+          = image_tag(result.badge)
+      .clear

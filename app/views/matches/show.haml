@@ -1,0 +1,33 @@
+= link_to matches_path, class: "left-header colored" do
+  = fa_icon "arrow-left"
+
+.right-header
+  - @user.results.each do |result|
+    = link_to image_tag(result.badge), personality_path(result.id)
+
+.header= @user.name
+.picture= image_tag @user.picture(400)
+
+.section
+  %h2 Mutual Interests
+  - @mutual_interests.each do |page|
+    = link_to image_tag(page.picture), page.link
+
+  - if @mutual_interests.empty?
+    %span There's nothing here
+
+.section
+  %h2 About
+  %span= @data.about
+
+.section
+  %h2 Birthday
+  %span= @data.birthday
+
+.section
+  %h2 Location
+  %span= @data.location
+
+.section
+  %h2 Email
+  %span= @user.email || "There's nothing here"

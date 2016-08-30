@@ -1,0 +1,17 @@
+= render partial: "layouts/notifications"
+
+.slides
+  - @slides.each do |slide|
+    .slide(class="#{slide["type"]}" data-id="#{slide["id"]}" data-assessment-id="#{slide["assessment_id"]}")
+      .slide-caption= slide["caption"]
+      .slide-image= image_tag slide["image_desktop"]
+      .slide-badges
+        - slide["results"] && slide["results"].each do |results|
+          .slide-badge= link_to image_tag(results["badge"]), personality_path(results["id"])
+      .me-not
+        .me> Me
+        .not-me> Not Me
+
+  .loading-slide
+    .slide-caption Loading...
+    .slide-image= image_tag "loading.jpg"
