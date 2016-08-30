@@ -1,9 +1,13 @@
 source "https://rubygems.org"
 
+ruby "2.3.1"
+
 gem "rails"
 gem "pg"
-gem "webrick"
+gem "thin"
 
+gem "coffee-rails"
+gem "haml"
 gem "sass-rails"
 gem "uglifier"
 gem "jquery-rails"

@@ -5,9 +5,6 @@ class Like < ActiveRecord::Base
     Page.find_by(uid: page_uid)
   end
 
-  def user
-  end
-
   def self.update_all(uid, credentials)
     require "open-uri"
 

@@ -28,11 +28,11 @@ class User < ActiveRecord::Base
   end
 
   ###################### Matches ######################
-  def wants(user)
+  def wants?(user)
     Match.exists?(user_uid: uid, match_uid: user.uid)
   end
 
-  def matches(user)
+  def matches?(user)
     Match.exists?(
       user_uid: uid,
       match_uid: user.uid,

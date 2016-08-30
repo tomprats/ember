@@ -7,8 +7,7 @@ class MatchesController < ApplicationController
 
   def show
     @user = User.find_by(uid: params[:id])
-    @match = current_user.match(@user)
-    if @match
+    if @match = current_user.match(@user)
       @match.update_attributes(read: true)
       @mutual_interests = @match.mutual_interests
       @data = @user.data

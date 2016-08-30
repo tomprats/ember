@@ -24,8 +24,7 @@ class MatchingController < ApplicationController
 
   def update
     if params[:type] == "user"
-      match = Match.find_by(user_uid: params[:id], match_uid: current_user.uid, response: true)
-      if match
+      if match = Match.find_by(user_uid: params[:id], match_uid: current_user.uid, response: true)
         match.update_attributes(mutual: params[:response] == "true")
       end
 
@@ -46,11 +45,12 @@ class MatchingController < ApplicationController
 
   private
   def interleave(a, b)
-    a.length >= b.length ? a.zip(b).flatten.compact : b.zip(a).flatten.compact
+    matches = a.length >= b.length ? a.zip(b) : b.zip(a)
+    matches.flatten.compact
   end
 
   def possible_matches
-    users = User.all.select { |u| u != current_user && current_user.could_want?(u) && !current_user.wants(u) }.shuffle
+    users = User.all.select { |u| u != current_user && current_user.could_want?(u) && !current_user.wants?(u) }.shuffle
     if users.empty?
       users = User.all.select { |u| u != current_user && current_user.could_want?(u) }.shuffle
     end
