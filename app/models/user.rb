@@ -144,6 +144,31 @@ class User < ActiveRecord::Base
     end
   end
 
+  def best_match
+    current_user_results = results.first
+    best_user = nil
+    best_score = 10000000
+    User.all.each do |user|
+      # Check best match
+      user_results = user.results.first
+      total_difference = 0
+      if user_results
+        current_user_pt = Traitify.new.find_results(current_user_results.id).personality_types
+        user_pt = Traitify.new.find_results(user_results.id).personality_types
+        current_user_pt.each do |pt|
+          pt.score
+          current_user_pt = current_user_pt.select { |p| p.name == pt.name }
+          total_difference = abs(current_user_pt.score - pt.score)
+        end
+      end
+
+      if best_score > total_difference
+        best_user = user
+        best_score = total_difference
+      end
+    end
+  end
+
   private
   def self.user_params(auth)
     interested_in = auth.extra.raw_info.interested_in.join(",") if auth.extra.raw_info.interested_in

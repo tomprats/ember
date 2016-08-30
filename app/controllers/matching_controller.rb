@@ -7,6 +7,24 @@ class MatchingController < ApplicationController
   end
 
   def index
+#    people
+#    assessment
+    both
+  end
+
+  def refresh
+    render json: { slides: index, notification: new_notifications? }
+  end
+
+  def people
+    @slides = possible_matches.collect(&:to_slide).first(50)
+  end
+
+  def assessment
+    @assessment_id = current_user.incomplete_assessment.uid
+  end
+
+  def both
     assessment = current_user.incomplete_assessment
     assessment_slides = assessment.slides
     if assessment_slides.empty?
@@ -16,10 +34,6 @@ class MatchingController < ApplicationController
     @slides = interleave(possible_matches.collect(&:to_slide), assessment_slides).first(50)
   rescue
     @slides = possible_matches.collect(&:to_slide).first(50)
-  end
-
-  def refresh
-    render json: { slides: index, notification: new_notifications? }
   end
 
   def update

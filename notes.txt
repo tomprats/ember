@@ -1,0 +1,48 @@
+MUTUAL LIKES
+
+app/views/sessions/new.html.erb
+
+config/initializers/omniauth.rb
+
+db/migrate/
+      20141017183741_create_likes.rb
+      20141017185946_create_pages.rb
+      20141017195718_create_users.rb
+
+app/controllers/sessions_controller.rb
+
+app/models/
+      like.rb
+      page.rb
+      user.rb
+
+app/controllers/matches_controller.rb
+
+
+
+
+TRAITIFY
+
+Gemfile
+
+config/local_variables.example.rb
+config/initializers/traitify.rb
+
+db/migrate/20141024193939_create_assessments.rb
+
+app/models/assessment.rb
+
+app/controllers/
+      application_controller.rb
+      matching_controller.rb
+      personalities_controller.rb
+      matches_controller.rb
+
+
+
+
+BEST MATCH
+
+Personality Types
+Personality Traits
+Mutual Likes

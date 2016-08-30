@@ -1,0 +1,7 @@
+<div class="assessment"></div>
+<script>
+  Traitify.setPublicKey("<%= ENV["TRAITIFY_KEY"] %>");
+  Traitify.setHost("<%= ENV["TRAITIFY_HOST"] %>");
+  Traitify.setVersion("v1");
+  Traitify.ui.load("<%= @assessment_id %>", ".assessment")
+</script>
